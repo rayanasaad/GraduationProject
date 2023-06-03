@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "262949319177",
+    "project_id": "junews-aa1cb",
+    "storage_bucket": "junews-aa1cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262949319177:android:38016a3c2d6424c2887ed8",
+        "android_client_info": {
+          "package_name": "com.example.junews"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7Mk83_mXeFRW8iQaMx4RdLwdOkdjCwr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
