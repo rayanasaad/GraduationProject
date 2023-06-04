@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:junews/controller/detils_screen_controller.dart';
 import 'package:junews/controller/home_screen_controller.dart';
 import 'package:junews/model/news_model.dart';
 
 import '../../helper/app_colors.dart';
 import '../../main.dart';
-import 'package:just_audio/just_audio.dart';
 
 
 class DetailsScreen extends StatefulWidget {
@@ -20,34 +20,12 @@ class DetailsScreen extends StatefulWidget {
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-  int selectedPlayerIdx = 0;
-
-  List<StreamSubscription> streams = [];
-
-
-  final player = AudioPlayer();
-  setAudio()
-  async {
-    await player.setAsset("assets/audio/1ar.mp3");
-  }
-  @override
-  void initState() {
-    // TODO: implement initState
-    setAudio();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    streams.forEach((it) => it.cancel());
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HomeScreenController>(
-      init: HomeScreenController(),
-      builder: (controller) {
+    return GetBuilder<DetailsScreenController>(
+      init: DetailsScreenController(),
+      builder: (mainCon) {
         return Scaffold(
           body:  SafeArea(
             child: SizedBox(
@@ -137,13 +115,33 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                             ),
                                             const Spacer(),
                                             InkWell(
-                                              onTap: (){
-                                                player.play();
+                                              onTap: ()async{
+
+                                              if(  mainCon.isPlayed){
+                                                mainCon.player.stop();
+
+                                              }
+                                              else{
+                                               await mainCon.setAudio(audio: languageCode== "en"?
+                                                widget.newsList[widget.index].audioFileEN:
+                                                widget.newsList[widget.index].audioFileAR
+                                                );
+                                               mainCon.player.play();
+                                              }
+
 
                                               },
                                               child:  Row(
                                                 children: [
-                                                  const Icon(
+                                                  mainCon.isPlayed?
+                                               const Icon(
+
+                                              Icons.stop_circle_sharp,
+                                                size: 30,
+                                                color: mainRedColor,
+
+                                              ) :const Icon(
+
                                                     Icons.play_circle_outline,
                                                     size: 30,
                                                     color: mainRedColor,
