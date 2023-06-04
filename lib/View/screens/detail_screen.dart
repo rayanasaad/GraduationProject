@@ -116,8 +116,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                             const Spacer(),
                                             InkWell(
                                               onTap: ()async{
-
-                                              if(  mainCon.isPlayed){
+                                              if(mainCon.isPlayed){
                                                 mainCon.player.stop();
 
                                               }
@@ -129,6 +128,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                                mainCon.player.play();
                                               }
 
+                                              mainCon.isPlayed = !mainCon.isPlayed;
+mainCon.update();
 
                                               },
                                               child:  Row(

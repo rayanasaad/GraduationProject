@@ -16,7 +16,6 @@ bool isPlayed = false;
 
   @override
   void onInit() {
-isPlayed = false;
     super.onInit();
   }
   @override
